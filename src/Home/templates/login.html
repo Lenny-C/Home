@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<script src="/static/plugin/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$('#button').click(function(){
+			$.ajax({
+				type:'post',
+				url:'/login/',
+				data :{
+					username : $('#username').val(),
+					password : $('#password').val()
+				},
+				success:function(data){
+					console.log(data);
+					if(data.code == 200){
+						location.href="/index/"
+					}else{
+						alert('fail')
+					}
+				},
+			})
+			
+		});
+	});
+	
+</script>
+</head>
+<body>
+	<h1>Login</h1>
+	<form method='post' action='/login/'>
+		<input type="text" name="username" id='username'>
+		<input type="password" name="password" id='password'>
+		<input type="button" value="提交" id="button" ">
+	</form>
+</body>
+</html>
